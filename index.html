@@ -32,6 +32,34 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style type="text/css">
+#products-list-product-list-in-box{
+
+    position: absolute;
+    margin-top: -10px;
+    z-index: 10;
+    height: 181px;
+    margin-left: 0px;
+    overflow-y: scroll;
+    width: 273px;
+}
+#box-footer-text-center{
+
+      margin-top: 163px;
+
+}
+
+#box-box-primary{
+
+      height: 327px;
+      margin-top: 0px;
+}
+
+#box-header-with-border{
+
+      margin-top: 7px;
+    margin-left: -5px;
+}
+
 </style>       
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -538,7 +566,7 @@
 
           <!-- TABLE: LATEST ORDERS -->
           <div class="box box-info">
-            <div class="box-header with-border">
+            <div id="box-header-with-border" class="box-header with-border">
               <h3 class="box-title">Latest Orders</h3>
 
               <div class="box-tools pull-right">
@@ -616,8 +644,7 @@
         <!-- /.col -->
         <div class="col-md-4">
        <!-- PRODUCT LIST -->
-        
-          <div class="box box-primary">
+        <div id="box-box-primary" class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Trending Products</h3>
               <br >
@@ -634,7 +661,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <ul class="products-list product-list-in-box">
+              <ul id="products-list-product-list-in-box" class="products-list product-list-in-box">
                 <li class="item">
                   <div class="product-img">
                     <img src="dist/img/default-50x50.gif" alt="Product Image">
@@ -690,7 +717,7 @@
               </ul>
             </div>
             <!-- /.box-body -->
-            <div class="box-footer text-center">
+            <div id="box-footer-text-center" class="box-footer text-center">
               <a href="javascript:void(0)" class="uppercase">View All Products</a>
             </div>
             <!-- /.box-footer -->
