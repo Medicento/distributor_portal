@@ -43,9 +43,7 @@
     width: 313px;
 }
 #box-footer-text-center{
-
       margin-top: 187px;
-
 }
 
 #box-box-primary{
@@ -62,6 +60,14 @@
 #checkbox_align{
 
   margin-left: 60px;
+}
+#blankCheckbox{
+
+  margin-left: 60px;
+}
+#confirm_button{
+    margin-top: -28px;
+    margin-left: 94px;
 }
 
 </style>       
@@ -481,6 +487,11 @@
       <h1>
         Orders
       </h1>
+      <td>
+        <div id="confirm_button" style="display:none"> 
+          <button type="button" class="btn btn-primary">Confirm</button>
+        </div>
+      <td>
     </section>
 
     <!-- Main content -->
@@ -501,6 +512,7 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="table-responsive">
+                <form action="/admin/config/development/generate/content" method="post" id="devel-generate-content-form" accept-charset="UTF-8">
                 <table class="table no-margin">
                   <thead>
                   <tr>
@@ -510,11 +522,15 @@
                         var checkboxes = document.querySelectorAll('input[type="checkbox"]');
                         for (var i = 0; i < checkboxes.length; i++) {
                           if (checkboxes[i] != source)
-                          checkboxes[i].checked = source.checked;
+                          {
+                              checkboxes[i].checked = source.checked;
+                           } 
                           }
                         }
                       </script>
-                      <input id="checkbox_align" type="checkbox" onclick="toggle(this);" /> &nbsp&nbsp&nbsp Select All<br />
+                      <div id="sel_all" onclick="Select_all()" >
+                        <input id="checkbox_align" type="checkbox" onclick="toggle(this);"> &nbsp&nbsp&nbsp Select All<br />
+                    </div>
                     </th>
                     <th>Order ID</th>
                     <th>Retailer</th>
@@ -527,12 +543,10 @@
                   <tbody>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                     <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Mehtab Pharma</td>
+                    <td>Mehtab Pharma</td> 
                     <td>6000</td>
                     <td><small><i class="fa fa-inr"></i></small> 10000</td>
                     <td>
@@ -543,9 +557,8 @@
 
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                      
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
                     </td>
                     <td><a href="pages/examples/invoice.html">OR7429</a></td>
                     <td>Garuda Pharma</td>
@@ -558,9 +571,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
                     </td>
                     <td><a href="pages/examples/invoice.html">OR7429</a></td>
                     <td>New Life Medicals</td>
@@ -573,9 +584,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>Alpha medicals</td>
@@ -588,9 +597,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                      
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+                    
                     </td>
                     <td><a href="pages/examples/invoice.html">OR7429</a></td>
                     <td>Medicure Pharma</td>
@@ -603,9 +612,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+          
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+              
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>Care Chemist</td>
@@ -618,9 +627,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                     
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+                
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>New Life Pharma</td>
@@ -633,9 +642,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                   
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+           
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>Balaji Pharma</td>
@@ -648,9 +657,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                    
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+                  
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>Shree Pharma</td>
@@ -663,9 +672,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                     
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+           
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>Care Medicines</td>
@@ -678,9 +687,9 @@
                   </tr>
                   <tr>
                     <td>
-                      <label class="form-check-label">
-                          <input id="checkbox_align" class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-                    </label>
+                     
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+  
                     </td>
                     <td><a href="pages/examples/invoice.html">OR1848</a></td>
                     <td>Mahaveer Medicals</td>
@@ -691,28 +700,20 @@
                     </td>
                     <td><button type="button" class="btn btn-primary">Confirm</button><td>
                   </tr>
-
+                  
+                  
                   </tbody>
                 </table>
+              </form>
               </div>
               <!-- /.table-responsive -->
+              
             </div>
-            <script>
-                        $('#toggle-all').click(function() {
-                        $('.btn-group input[type="checkbox"]').prop('checked', true);
-                      });
-                      </script>
+            
             <!-- /.box-body -->
             
             <!-- /.box-footer -->
           </div>
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-4">
-       <!-- PRODUCT LIST -->
-        
-         
           <!-- /.box -->
         </div>
         <!-- /.col -->
@@ -722,7 +723,6 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -761,5 +761,35 @@
 <script src="dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script >
+  $(document).ready(function(){
+    var $checkboxes = $('#devel-generate-content-form td input[type="checkbox"]');   
+      $checkboxes.change(function(){
+        var countCheckedCheckboxes = $checkboxes.filter(':checked').length;
+        $('#edit-count-checked-checkboxes').val(countCheckedCheckboxes);
+        var x = document.getElementById("confirm_button");
+        if ( countCheckedCheckboxes >= 2) {
+          x.style.display = "block";
+          }else{
+                   x.style.display = "none";
+               }
+      });
+
+  });
+</script>
+<script>
+  var count = 1; 
+  function Select_all(){
+    count=count+1;
+    var y = document.getElementById("confirm_button");
+    if(count % 2 == 0)
+    {
+        y.style.display = "block";
+    }else{
+             y.style.display = "none"; 
+          }
+  }
+</script>
+               
 </body>
 </html>
