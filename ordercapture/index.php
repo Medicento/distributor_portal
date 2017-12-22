@@ -136,10 +136,6 @@
                                     <option value="Sri Sai Medicals and Genarel Store">Sri Sai Medicals and Genarel Store </option>
                                 </select>
                             </div>
-                            <input type="text" name="pharma" id="pharma" style="display: none;">
-                            <p id="pharmaDetail">
-                             
-                            </p>
                             <div class="form-group col-lg-12">
                                 <input class="form-control btn-primary btn-lg" type="submit" name="submit" value="New Order">
                             </div>
@@ -162,7 +158,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2017-2018 <a href="http://prashantkbhardwaj.github.io/">Prashant Bhardwaj</a></strong> All rights
+    <strong>Copyright &copy; 2017-2018 <a href="http:medicento.com/">medicento</a></strong> All rights
     reserved.
   </footer>
   <!-- Add the sidebar's background. This div must be placed
@@ -176,21 +172,6 @@
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
   $.widget.bridge('uibutton', $.ui.button);
-</script>
-<script>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-
-    var yyyy = today.getFullYear();
-    if(dd<10){
-        dd='0'+dd;
-    } 
-    if(mm<10){
-        mm='0'+mm;
-    } 
-    var today = dd+'/'+mm+'/'+yyyy;
-    document.getElementById("date").innerHTML = today;
 </script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -211,55 +192,6 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script type="text/javascript">
-    function pharmaData(){
-        var pharmaCode = document.getElementById("pharmaSelect").value;
-        if (pharmaCode == 4505) {
-            document.getElementById("pharmaDetail").innerHTML = "Balaji Medicals and General store"
-            document.getElementById("pharma").value = "Balaji Medicals and General store"
-        } else if (pharmaCode == 4506) {
-            document.getElementById("pharmaDetail").innerHTML = "Mehtab Pharma"
-            document.getElementById("pharma").value = "Mehtab Pharma"
-        } else if (pharmaCode == 4507) {
-            document.getElementById("pharmaDetail").innerHTML = "Swati Medicals and general Stores"
-            document.getElementById("pharma").value = "Swati Medicals and general Stores"
-        } else if (pharmaCode == 4509) {
-            document.getElementById("pharmaDetail").innerHTML = "garuda pharma"
-            document.getElementById("pharma").value = "garuda pharma"
-        } else if (pharmaCode == 4511) {
-            document.getElementById("pharmaDetail").innerHTML = "Prema medicals"
-            document.getElementById("pharma").value = "Prema medicals"
-        } else if (pharmaCode == 4512) {
-            document.getElementById("pharmaDetail").innerHTML = "New Life Medicals"
-            document.getElementById("pharma").value = "New Life Medicals"
-        } else if (pharmaCode == 4513) {
-            document.getElementById("pharmaDetail").innerHTML = "Shifaa Medical & General stores"
-            document.getElementById("pharma").value = "Shifaa Medical & General stores"
-        } else if (pharmaCode == 4514) {
-            document.getElementById("pharmaDetail").innerHTML = "NRS green plus pharma"
-            document.getElementById("pharma").value = "NRS green plus pharma"
-        } else if (pharmaCode == 4515) {
-            document.getElementById("pharmaDetail").innerHTML = "Alpha medicals"
-            document.getElementById("pharma").value = "Alpha medicals"
-        } else if (pharmaCode == 4516) {
-            document.getElementById("pharmaDetail").innerHTML = "care Chemist"
-            document.getElementById("pharma").value = "care Chemist"
-        } else if (pharmaCode == 4517) {
-            document.getElementById("pharmaDetail").innerHTML = "Green Plus"
-            document.getElementById("pharma").value = "Green Plus"
-        } else if (pharmaCode == 4518) {
-            document.getElementById("pharmaDetail").innerHTML = "Standard medicals and General Store"
-            document.getElementById("pharma").value = "Standard medicals and General Store"
-        } else if (pharmaCode == 4519) {
-            document.getElementById("pharmaDetail").innerHTML = "Medicure Pharma"
-            document.getElementById("pharma").value = "Medicure Pharma"
-        } else if (pharmaCode == 4520) {
-            document.getElementById("pharmaDetail").innerHTML = "Sri sai medicals and genarel store"
-            document.getElementById("pharma").value = "Sri sai medicals and genarel store"
-        }
-    }
-</script>
-
 </body>
 </html>
 <?php
