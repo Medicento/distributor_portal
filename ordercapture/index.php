@@ -118,7 +118,7 @@
                           <div class="box-body">
                             <div class="form-group col-lg-12">
                               <label for="pharmacy">Select Pharmacy</label>
-                                <select name="pharmacy" onchange="pharmaData();" class="form-control" id="pharmaSelect" required>
+                                <select name="pharmacy" class="form-control" id="pharmaSelect" required>
                                     <option selected disabled>Select your option</option>
                                     <option value="Balaji Medicals and General store">Balaji Medicals and General store </option>
                                     <option value="Mehtab Pharma">Mehtab Pharma </option>
