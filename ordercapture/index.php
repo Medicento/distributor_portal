@@ -10,7 +10,7 @@
 ?>
 <?php
     if (isset($_POST['submit'])) {
-        $pharma = $_POST['pharma'];
+        $pharma = $_POST['pharmacy'];
         redirect_to("inventory.php?order_id=".$order_id."&pharma=".$pharma);
     }
 ?>
