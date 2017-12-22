@@ -151,7 +151,7 @@
       <!-- Small boxes (Stat box) -->
       <div class="container">
           <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-12">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                       <h3 class="box-title">Add Product</h3>
@@ -186,7 +186,7 @@
     </div>
      
           <div class="row">
-        <div class="col-xs-10>
+        <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">List of Products</h3>
