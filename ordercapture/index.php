@@ -120,20 +120,20 @@
                               <label for="pharmacy">Select Pharmacy</label>
                                 <select name="pharmacy" onchange="pharmaData();" class="form-control" id="pharmaSelect" required>
                                     <option selected disabled>Select your option</option>
-                                    <option value="4505">Balaji Medicals and General store </option>
-                                    <option value="4506">Mehtab Pharma </option>
-                                    <option value="4507">Swati Medicals and general Stores </option>
-                                    <option value="4509">Garuda Pharma </option>
-                                    <option value="4511">Prema Medicals</option>
-                                    <option value="4512">New Life Medicals </option>
-                                    <option value="4513">Shifaa Medical & General stores </option>
-                                    <option value="4514">NRS Green Plus Pharma </option>
-                                    <option value="4515">Alpha Medicals</option>
-                                    <option value="4516">Care Chemist</option>
-                                    <option value="4517">Green Plus</option>
-                                    <option value="4518">Standard Medicals and General Store</option>
-                                    <option value="4519">Medicure Pharma</option>
-                                    <option value="4520">Sri Sai Medicals and Genarel Store </option>
+                                    <option value="Balaji Medicals and General store">Balaji Medicals and General store </option>
+                                    <option value="Mehtab Pharma">Mehtab Pharma </option>
+                                    <option value="Swati Medicals and general Stores">Swati Medicals and general Stores </option>
+                                    <option value="Garuda Pharma">Garuda Pharma </option>
+                                    <option value="Prema Medicals">Prema Medicals</option>
+                                    <option value="New Life Medicals">New Life Medicals </option>
+                                    <option value="Shifaa Medical & General stores">Shifaa Medical & General stores </option>
+                                    <option value="NRS Green Plus Pharma">NRS Green Plus Pharma </option>
+                                    <option value="Alpha Medicals">Alpha Medicals</option>
+                                    <option value="Care Chemist">Care Chemist</option>
+                                    <option value="Green Plus">Green Plus</option>
+                                    <option value="tandard Medicals and General Store">Standard Medicals and General Store</option>
+                                    <option value="Medicure Pharma">Medicure Pharma</option>
+                                    <option value="Sri Sai Medicals and Genarel Store">Sri Sai Medicals and Genarel Store </option>
                                 </select>
                             </div>
                             <input type="text" name="pharma" id="pharma" style="display: none;">
