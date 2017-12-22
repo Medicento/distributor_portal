@@ -151,7 +151,7 @@
       <!-- Small boxes (Stat box) -->
       <div class="container">
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-10">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                       <h3 class="box-title">Add Product</h3>
@@ -180,42 +180,44 @@
                     </p>
                 </div>
             </div>
-      </div>
-      </div>
-      <div class="container">
+      
+    
+   
+    </div>
+     
           <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-10">
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">List of Products</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
-                <thead>
-                <tr>
-                  <th class="text-center">Product</th>
-                  <th class="text-center">Quantity</th>
-                  <th class="text-center">Cost</th>
-                  <th class="text-center">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        while ($productList = mysqli_fetch_assoc($result_showProduct)) { ?>
-                            <tr>
-                              <td><?php echo $productList['product']; ?></td>
-                              <td><?php echo $productList['quantity']; ?></td>
-                              <td><?php echo $productList['cost']; ?></td>
-                              <td class="text-center" >
-                                <a href="deleteProduct.php?product_id=<?php echo $productList['id']; ?>&order_id=<?php echo $order_id ?>" onclick="return confirm('Are you sure you want to delete this product?');"><i class="fa fa-close"></i> </a>
-                              </td>
-                            </tr>
-                            <?php
-                        }
-                    ?>
-                </tbody>
-              </table>
+                    <table id="example2" class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th class="text-center">Product</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Cost</th>
+                        <th class="text-center">Action</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                          <?php
+                              while ($productList = mysqli_fetch_assoc($result_showProduct)) { ?>
+                                  <tr>
+                                    <td><?php echo $productList['product']; ?></td>
+                                    <td><?php echo $productList['quantity']; ?></td>
+                                    <td><?php echo $productList['cost']; ?></td>
+                                    <td class="text-center" >
+                                      <a href="deleteProduct.php?product_id=<?php echo $productList['id']; ?>&order_id=<?php echo $order_id ?>" onclick="return confirm('Are you sure you want to delete this product?');"><i class="fa fa-close"></i> </a>
+                                    </td>
+                                  </tr>
+                                  <?php
+                              }
+                          ?>
+                      </tbody>
+                    </table>
               <br><hr>
               <div class="row">
                 <div class="col-lg-12 text-center">
@@ -231,7 +233,7 @@
         </div>
         <!-- /.col -->
       </div>
-      </div>
+     </div>
     </section>
     <!-- /.content -->
   </div>
