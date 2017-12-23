@@ -569,13 +569,11 @@
                     <th>Order ID</th>
                     <th>Retailer</th>
                     <th>Status</th>
-                    <th>Time of Pick Up</th>
+                    <th>Time of Order</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <div id="latestOrders">
-                      <!-- latestorder top 5 table -->
-                  </div>
+                  <tbody id="latestOrders">
+                  
                   </tbody>
                 </table>
               </div>
@@ -583,7 +581,7 @@
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+              <a href="order.php" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
             </div>
             <!-- /.box-footer -->
           </div>
