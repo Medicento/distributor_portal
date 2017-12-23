@@ -91,7 +91,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>M</b>DC</span>
       <!-- logo for regular state and mobile devices -->
@@ -383,7 +383,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="index.html">
+          <a href="index.php">
             <!-- <i class="fa fa-dashboard"> --><span>Dashboard</span>
             <span class="pull-right-container">
               <!-- <i class="fa fa-angle-left pull-right"></i> -->
@@ -586,7 +586,7 @@
                               ?>
                         <td><?php echo $product_pharma['pharma'] ?></td>
                         <td><?php echo $totalQuantity[0]; ?></td>
-                        <td><small><i class="fa fa-inr"></i></small> 10000</td>
+                        <td><small><i class="fa fa-inr"></i></small> <?php echo $totalCost[0] ?></td>
                         <td>
                           <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
                         </td>
@@ -845,11 +845,11 @@
        </div>
    </div>
   </div>
-  <?php
+ 
+</div>
+ <?php
 }
 ?>
-</div>
-< 
 </div>
 
 
