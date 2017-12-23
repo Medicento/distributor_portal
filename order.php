@@ -555,6 +555,10 @@
                   </tr>
                   </thead>
                   <tbody>
+                  
+
+
+
                   <tr>
                     <td>
                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
@@ -608,7 +612,11 @@
   <div class="control-sidebar-bg"></div>
 
 </div>
-<div class="modal fade" id="myModal" role="dialog">
+
+<?php
+    while ($modalList = mysqli_fetch_assoc($result_showModal)) { 
+      ?>
+<div class="modal fade" id="order<?php echo $modalList['order_id']; ?>" role="dialog">
    <div class="modal-dialog">
    
      <!-- Modal content-->
@@ -664,6 +672,9 @@
      
    </div>
  </div>
+ <?php
+}
+?>
 <div class="modal fade" id="confirm_modal" role="dialog">
    <div class="modal-dialog modal-lg">
   
