@@ -494,8 +494,9 @@
 
                 <div class="info-box-content">
                   <span class="info-box-text">Completed - Today</span>
-                  <span class="info-box-number"><small>Count</small>&nbsp;223344</span>
-                  <span class="info-box-number"><small><i class="fa fa-inr"></i></small>&nbsp;543784</span>
+                    <div id="completeOrders">
+                        <!-- completed orders here -->
+                    </div>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -827,6 +828,11 @@
             $("#liveOrders").load("selectLiveOrders.php");
             var refreshId = setInterval(function() {
                 $("#liveOrders").load('selectLiveOrders.php?randval='+ Math.random());                                    
+            }, 1000);
+            $.ajaxSetup({ cache: false});  
+            $("#completeOrders").load("selectCompleteOrders.php");
+            var refreshId = setInterval(function() {
+                $("#completeOrders").load('selectCompleteOrders.php?randval='+ Math.random());                                    
             }, 1000);
             $.ajaxSetup({ cache: false});       
         });       
