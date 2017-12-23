@@ -1,6 +1,6 @@
-<?php require_once("includes/session.php");?>
-<?php require_once("includes/db_connection.php");?>
-<?php require_once("includes/functions.php");?>
+<?php require_once("../includes/session.php");?>
+<?php require_once("../includes/db_connection.php");?>
+<?php require_once("../includes/functions.php");?>
 
 <?php
     $order_id = $_GET['order_id'];
@@ -244,7 +244,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.0.0
     </div>
-    <strong>Copyright &copy; 2017-2018 <a href="http://prashantkbhardwaj.github.io/">Prashant Bhardwaj</a></strong> All rights
+    <strong>Copyright &copy; 2017-2018 <a href="http://www.medicento.com/">medicento</a></strong> All rights
     reserved.
   </footer>
   <!-- Add the sidebar's background. This div must be placed
