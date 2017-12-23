@@ -552,7 +552,7 @@
                     <th>Retailer</th>
                     <th>Quantity</th>
                     <th>Cost</th       >
-                    <th>Time  of Pick   Up</th>
+                    <th>Time  of Order</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -588,7 +588,7 @@
                         <td><?php echo $totalQuantity[0]; ?></td>
                         <td><small><i class="fa fa-inr"></i></small> <?php echo $totalCost[0] ?></td>
                         <td>
-                          <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
+                          <div class="sparkbar" data-color="#f39c12" data-height="20"><?php echo $productList['order_time']; ?></div>
                         </td>
                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal<?php echo $productList['order_id']; ?>">Confirm</button><td>
                       </tr>
@@ -658,8 +658,8 @@
                  <thead>
                  <tr>
                    <th>Product</th>
-                   <th>Rate</th>
                    <th>Quantity</th>
+                   <th>Cost</th>
                  </tr>
                  </thead>
                  <tbody>
@@ -760,20 +760,22 @@
                  <thead>
                  <tr>
                    <th>Product</th>
-                   <th>Rate</th>
                    <th>Quantity</th>
+                   <th>Cost</th>
                  </tr>
                  </thead>
                  <tbody>
                 <?php
-                      while ($modalList = mysqli_fetch_assoc($result_modalDetails)) { ?>
-                     <tr>
-                     <td><?php echo $modalList['product']; ?></td>
-                     <td><?php echo $modalList['quantity']; ?></td>
-                     <td><?php echo $modalList['cost']; ?></td>
-                     </tr>
-                     <?php
-                      }
+                      while ($modalList = mysqli_fetch_assoc($result_modalDetails)) 
+                       { 
+                  ?>
+                         <tr>
+                         <td><?php echo $modalList['product']; ?></td>
+                         <td><?php echo $modalList['quantity']; ?></td>
+                         <td><?php echo $modalList['cost']; ?></td>
+                         </tr>
+                <?php
+                     }
                  ?>
                  
                  
@@ -800,25 +802,27 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
-          <p class="lead">Amount Due 2/22/2014</p>
+          <p class="lead">Amount Due <?php echo $confirmList['order_time']; ?></p>
+          <?php
+              $query_productCost = "SELECT SUM(cost) FROM add_products WHERE order_id = {$confirmList['order_id']}";
+              $result_productCost = mysqli_query($conn, $query_productCost);
+              confirm_query($result_productCost);
+              $totalCost = mysqli_fetch_array($result_productCost);
 
+          ?>
           <div class="table-responsive">
             <table class="table">
               <tr>
                 <th style="width:50%">Subtotal:</th>
-                <td>$250.30</td>
+                <td>Rs.<?php echo $totalCost[0]; ?></td>
               </tr>
               <tr>
-                <th>Tax (9.3%)</th>
-                <td>$10.34</td>
-              </tr>
-              <tr>
-                <th>Shipping:</th>
-                <td>$5.80</td>
+                <th>GST (5%)</th>
+                <td>Rs.<?php echo round($tax  = (($totalCost[0]*5)/100),2); ?></td>
               </tr>
               <tr>
                 <th>Total:</th>
-                <td>$265.24</td>
+                <td>Rs.<?php echo round($tax  = (($totalCost[0]*5)/100)+$totalCost[0],2);  ?></td>
               </tr>
             </table>
           </div>
@@ -847,7 +851,7 @@
   </div>
  
 </div>
- <?php
+<?php
 }
 ?>
 </div>
