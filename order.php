@@ -586,7 +586,7 @@
                               ?>
                         <td><?php echo $product_pharma['pharma'] ?></td>
                         <td><?php echo $totalQuantity[0]; ?></td>
-                        <td><small><i class="fa fa-inr"></i></small> 10000</td>
+                        <td><small><i class="fa fa-inr"></i></small> <?php echo $totalCost[0] ?></td>
                         <td>
                           <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
                         </td>
