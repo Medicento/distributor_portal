@@ -368,7 +368,7 @@
           </a>
         </li>
         <li>
-        <a href="order.html">
+        <a href="order.php">
            <span>Orders</span>
           </a>
         </li>

@@ -91,7 +91,7 @@
   <header class="main-header">
 
     <!-- Logo -->
-    <a href="index.html" class="logo">
+    <a href="index.php" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>M</b>DC</span>
       <!-- logo for regular state and mobile devices -->
@@ -383,7 +383,7 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
         <li>
-          <a href="index.html">
+          <a href="index.php">
             <!-- <i class="fa fa-dashboard"> --><span>Dashboard</span>
             <span class="pull-right-container">
               <!-- <i class="fa fa-angle-left pull-right"></i> -->
