@@ -554,6 +554,7 @@
                     <th>Action</th>
                   </tr>
                   </thead>
+<<<<<<< HEAD
             <tbody> 
                  <?php
                      while ($productList = mysqli_fetch_assoc($result_showProduct)) { ?>
@@ -593,6 +594,30 @@
                     <?php
                       }
                     ?>        
+=======
+                  <tbody>
+                  
+
+
+
+                  <tr>
+                    <td>
+                     <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+                    </td>
+                    <td><a data-toggle="modal" data-target="#order9313404" href="#" >OR1848</a></td>
+                    <td>Mehtab Pharma</td> 
+                    <td>6000</td>
+                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
+                    <td>
+                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
+                    </td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
+                  </tr>
+
+                  
+                  
+                  
+>>>>>>> 6321ffda21aafe1d2a6fa68181300e8284088120
                   </tbody>
                 </table>
               </form>
@@ -629,14 +654,27 @@
   <div class="control-sidebar-bg"></div>
 
 </div>
-<div class="modal fade" id="myModal" role="dialog">
+
+<?php
+    while ($modalList = mysqli_fetch_assoc($result_showModal)) { 
+      ?>
+<div class="modal fade" id="order<?php echo $modalList['order_id']; ?>" role="dialog">
    <div class="modal-dialog">
    
      <!-- Modal content-->
      <div class="modal-content">
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <center><h4 class="modal-title">Order Detail</h4></center>
+         <center><h4 class="modal-title">Order Detail</h4></center> <?php echo $modalList['order_id']; ?>
+         <?php
+              $query_modalPharma = "SELECT pharma FROM add_products WHERE order_id = {$modalList['order_id']}";
+              $result_modalPharma = mysqli_query($conn, $query_modalPharma);
+              confirm_query($result_modalPharma);
+              $modalPharma = mysqli_fetch_assoc($result_modalPharma);
+              $query_modalDetails = "SELECT * FROM add_products WHERE order_id = {$modalList['order_id']}";
+              $result_modalDetails = mysqli_query($conn, $query_modalDetails);
+              confirm_query($result_modalDetails);
+         ?>
        </div>
        <div class="modal-body">
          <table class="table no-margin">
@@ -645,35 +683,21 @@
                    <th>Product</th>
                    <th>Rate</th>
                    <th>Quantity</th>
-                   <th>Cost</th>
                  </tr>
                  </thead>
                  <tbody>
-               
-                 <tr>
-                   <td>Dolo</td>
-                   <td>21.08</td>
-                   <td>2</td>
-                   <td>
-                     <div class="sparkbar" data-color="#f56954 " data-height="20">42</div>
-                   </td>
-                 </tr>
-                 <tr>
-                   <td>Ranbaxy</td>
-                   <td>5</td>
-                   <td>4</td>
-                   <td>
-                     <div class="sparkbar" data-color="#00c0ef " data-height="20">20</div>
-                   </td>
-                 </tr>
-                 <tr>
-                   <td>Cipla</td>
-                   <td>3</td>
-                   <td>54</td>
-                   <td>
-                     <div class="sparkbar" data-color="#f39c12 " data-height="20">343</div>
-                   </td>
-                 </tr>
+                <?php
+                      while ($modalList = mysqli_fetch_assoc($result_modalDetails)) { ?>
+                     <tr>
+                     <td><?php echo $modalList['product']; ?></td>
+                     <td><?php echo $modalList['quantity']; ?></td>
+                     <td><?php echo $modalList['cost']; ?></td>
+                     </tr>
+                     <?php
+                      }
+                 ?>
+                 
+                 
                  </tbody>
                </table>
        </div>
@@ -685,6 +709,9 @@
      
    </div>
  </div>
+ <?php
+}
+?>
 <div class="modal fade" id="confirm_modal" role="dialog">
    <div class="modal-dialog modal-lg">
   
