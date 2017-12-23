@@ -7,8 +7,10 @@
     $query_showProduct = "SELECT * FROM orders ORDER BY id DESC";
     $result_showProduct = mysqli_query($conn, $query_showProduct);
     $result_showModal = mysqli_query($conn, $query_showProduct);
+    $result_showConfirm = mysqli_query($conn, $query_showProduct);
     confirm_query($result_showModal);
     confirm_query($result_showProduct);
+    confirm_query($result_showConfirm);
 ?>
 <!DOCTYPE html>
 <html>
@@ -584,30 +586,16 @@
                               ?>
                         <td><?php echo $product_pharma['pharma'] ?></td>
                         <td><?php echo $totalQuantity[0]; ?></td>
-                        <td><small><i class="fa fa-inr"></i></small> 10000</td>
+                        <td><small><i class="fa fa-inr"></i></small> <?php echo $totalCost[0] ?></td>
                         <td>
                           <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
                         </td>
-                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal<?php echo $productList['order_id']; ?>">Confirm</button><td>
                       </tr>
                     <?php
                       }
                     ?>        
-                  <tbody>
-                  <tr>
-                    <td>
-                     <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                    </td>
-                    <td><a data-toggle="modal" data-target="#order9313404" href="#" >OR1848</a></td>
-                    <td>Mehtab Pharma</td> 
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  </tbody>
+                  
                 </table>
               </form>
               </div>
@@ -654,7 +642,7 @@
      <div class="modal-content">
        <div class="modal-header">
          <button type="button" class="close" data-dismiss="modal">&times;</button>
-         <center><h4 class="modal-title">Order Detail</h4></center> <?php echo $modalList['order_id']; ?>
+         <center><h4 class="modal-title">Order Id - <?php echo $modalList['order_id']; ?> </h4> </center>
          <?php
               $query_modalPharma = "SELECT pharma FROM add_products WHERE order_id = {$modalList['order_id']}";
               $result_modalPharma = mysqli_query($conn, $query_modalPharma);
@@ -700,8 +688,12 @@
  </div>
  <?php
 }
+
+  while ($confirmList = mysqli_fetch_assoc($result_showConfirm)) 
+  { 
+
 ?>
-<div class="modal fade" id="confirm_modal" role="dialog">
+<div class="modal fade" id="confirm_modal<?php echo $confirmList['order_id']; ?>" role="dialog">
    <div class="modal-dialog modal-lg">
   
      <!-- Modal content-->
@@ -711,8 +703,8 @@
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
-            <i class="fa fa-globe"></i> AdminLTE, Inc.
-            <small class="pull-right">Date: 2/10/2014</small>
+            <i class="fa fa-globe"></i> medicento
+            <small class="pull-right">Date: <?php echo date("d.m.y"); ?></small>
           </h2>
         </div>
         <!-- /.col -->
@@ -722,18 +714,28 @@
         <div class="col-sm-4 invoice-col">
           From
           <address>
-            <strong>Admin, Inc.</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
+            <strong>medicento.</strong><br>
+            Kormangla, 1st Block<br>
+            Bangalore<br>
             Phone: (804) 123-5432<br>
-            Email: info@almasaeedstudio.com
+            Email: contactus@medicento.com
           </address>
         </div>
         <!-- /.col -->
+        <?php
+
+              $query_modalPharma = "SELECT pharma FROM add_products WHERE order_id = {$confirmList['order_id']}";
+              $result_modalPharma = mysqli_query($conn, $query_modalPharma);
+              confirm_query($result_modalPharma);
+              $modalPharma = mysqli_fetch_assoc($result_modalPharma);
+              $query_modalDetails = "SELECT * FROM add_products WHERE order_id = {$confirmList['order_id']}";
+              $result_modalDetails = mysqli_query($conn, $query_modalDetails);
+              confirm_query($result_modalDetails);
+              ?>
         <div class="col-sm-4 invoice-col">
           To
           <address>
-            <strong>John Doe</strong><br>
+            <strong><?php echo $modalPharma['pharma']; ?></strong><br>
             795 Folsom Ave, Suite 600<br>
             San Francisco, CA 94107<br>
             Phone: (555) 539-1037<br>
@@ -744,9 +746,8 @@
         <div class="col-sm-4 invoice-col">
           <b>Invoice #007612</b><br>
           <br>
-          <b>Order ID:</b> 4F3S8J<br>
-          <b>Payment Due:</b> 2/22/2014<br>
-          <b>Account:</b> 968-34567
+          <b>Order ID:</b> <?php echo $confirmList['order_id']; ?><br>
+          <b>Payment Due:</b> <?php echo $confirmList['order_time']; ?><br>
         </div>
         <!-- /.col -->
       </div>
@@ -756,46 +757,28 @@
       <div class="row">
         <div class="col-xs-12 table-responsive">
           <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Serial #</th>
-              <th>Description</th>
-              <th>Subtotal</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
-            </tr>
-            </tbody>
-          </table>
+                 <thead>
+                 <tr>
+                   <th>Product</th>
+                   <th>Rate</th>
+                   <th>Quantity</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                <?php
+                      while ($modalList = mysqli_fetch_assoc($result_modalDetails)) { ?>
+                     <tr>
+                     <td><?php echo $modalList['product']; ?></td>
+                     <td><?php echo $modalList['quantity']; ?></td>
+                     <td><?php echo $modalList['cost']; ?></td>
+                     </tr>
+                     <?php
+                      }
+                 ?>
+                 
+                 
+                 </tbody>
+               </table>
         </div>
         <!-- /.col -->
       </div>
@@ -862,6 +845,9 @@
        </div>
    </div>
   </div>
+  <?php
+}
+?>
 </div>
 < 
 </div>
