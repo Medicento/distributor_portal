@@ -477,8 +477,9 @@
 
                 <div class="info-box-content">
                   <span class="info-box-text">Live Orders - Today</span>
-                  <span class="info-box-number"><small>Count</small>&nbsp;223344</span>
-                  <span class="info-box-number"><small><i class="fa fa-inr"></i></small>&nbsp;223344</span>
+                  <div id="liveOrders">
+                        <!-- live orders here -->
+                  </div>
                 </div>
                 <!-- /.info-box-content -->
               </div>
@@ -817,38 +818,18 @@
 <script src="dist/js/pages/dashboard2.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<script type="text/javascript">
-    function initialize(){     
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">  
         $(document).ready(function() {
-            $("#responsecontainer").load("select.php");
+            $("#liveOrders").load("selectLiveOrders.php");
             var refreshId = setInterval(function() {
-                $("#responsecontainer").load('select.php?randval='+ Math.random());
-                var x = document.getElementById("responsecontainer").value;
-                
-                for (var i = 12; i < loop; i+=13) {
-                    
-                    if (locate[i-9]==drone) {
-                        var position=new google.maps.LatLng(locate[i-12], locate[i-11]);        
-                        document.getElementById("alti").innerHTML = locate[i-10];
-                        var batt_val = locate[i-7];
-                        if (batt_val<=12.4) {
-                            var batt_perc = (batt_val/12.4)*100;
-                            batt_perc = batt_perc.toFixed(2);
-                            document.getElementById("batt").innerHTML = batt_perc;
-                            document.getElementById("lab_num").innerHTML = batt_perc+" %";
-                        } else if (batt_val>12.4){
-                            var batt_perc = 100;
-                            //batt_perc = batt_perc.toFixed(2);
-                            document.getElementById("batt").innerHTML = batt_perc;
-                            document.getElementById("lab_num").innerHTML = batt_perc+" %";
-                        }  
-                        document.getElementById("vert_speed").innerHTML = locate[i-1];  
-                    };              
-                };                                      
+                $("#liveOrders").load('selectLiveOrders.php?randval='+ Math.random());                                    
             }, 1000);
             $.ajaxSetup({ cache: false});       
-        }); 
-    }       
+        });       
 </script>
 </body>
 </html>
