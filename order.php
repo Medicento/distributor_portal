@@ -543,35 +543,56 @@
                         }
                       </script>
                       <div id="sel_all" onclick="Select_all()" >
-                        <input id="checkbox_align" type="checkbox" onclick="toggle(this);"> &nbsp&nbsp&nbsp Select All<br />
+                        <input id="checkbox_align" type="checkbox" onclick="toggle(this);"> &nbsp;&nbsp;&nbsp; Select All<br />
                     </div>
-                    </th>
-                    <th>Order ID</th>
+                    </th       >
+                    <th>Order ID</th> 
                     <th>Retailer</th>
                     <th>Quantity</th>
-                    <th>Cost</th>
-                    <th>Time of Pick Up</th>
+                    <th>Cost</th       >
+                    <th>Time  of Pick   Up</th>
                     <th>Action</th>
                   </tr>
                   </thead>
-                  <tbody>
-                  <tr>
-                    <td>
-                     <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Mehtab Pharma</td> 
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
+            <tbody> 
+                 <?php
+                     while ($productList = mysqli_fetch_assoc($result_showProduct)) { ?>
+                      <tr>
+                        <td>
+                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
+                        </td>
+                        <td>
+                           <a href="#" data-toggle="modal" data-target="#order<?php echo $productList['order_id']; ?>">
+                                      <?php echo $productList['order_id']; ?>
+                           </a>
+                        </td>
+                        <?php 
+                                $query_productPharma = "SELECT pharma FROM add_products WHERE order_id = {$productList['order_id']}";
+                                $result_productPharma = mysqli_query($conn, $query_productPharma);
+                                confirm_query($result_productPharma);
+                                $product_pharma = mysqli_fetch_assoc($result_productPharma);
 
-                  
-                  
-                  
+                                $query_productQuantity = "SELECT SUM(quantity) FROM add_products WHERE order_id = {$productList['order_id']}";
+                                $result_productQuantity = mysqli_query($conn, $query_productQuantity);
+                                confirm_query($result_productQuantity);
+                                $totalQuantity = mysqli_fetch_array($result_productQuantity);
+
+                                $query_productCost = "SELECT SUM(cost) FROM add_products WHERE order_id = {$productList['order_id']}";
+                                $result_productCost = mysqli_query($conn, $query_productCost);
+                                confirm_query($result_productCost);
+                                $totalCost = mysqli_fetch_array($result_productCost);
+                              ?>
+                        <td><?php echo $product_pharma['pharma'] ?></td>
+                        <td><?php echo $totalQuantity[0]; ?></td>
+                        <td><small><i class="fa fa-inr"></i></small> 10000</td>
+                        <td>
+                          <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
+                        </td>
+                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
+                      </tr>
+                    <?php
+                      }
+                    ?>        
                   </tbody>
                 </table>
               </form>
