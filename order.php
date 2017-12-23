@@ -554,7 +554,6 @@
                     <th>Action</th>
                   </tr>
                   </thead>
-<<<<<<< HEAD
             <tbody> 
                  <?php
                      while ($productList = mysqli_fetch_assoc($result_showProduct)) { ?>
@@ -594,12 +593,7 @@
                     <?php
                       }
                     ?>        
-=======
                   <tbody>
-                  
-
-
-
                   <tr>
                     <td>
                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
@@ -613,11 +607,6 @@
                     </td>
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
                   </tr>
-
-                  
-                  
-                  
->>>>>>> 6321ffda21aafe1d2a6fa68181300e8284088120
                   </tbody>
                 </table>
               </form>
