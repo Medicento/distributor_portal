@@ -573,46 +573,9 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Mehtab Pharma</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Balaji Medicals</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">10:10 AM | 27-01-17</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>New Life Pharma</td>
-                    <td><span class="label label-info">Processing</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00c0ef" data-height="20">9:47 AM | 25-01-97</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                    <td>Medicare Pharma</td>
-                    <td><span class="label label-warning">Pending</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">8:50 AM | 21-05-07</div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                    <td>Medicure Medicals</td>
-                    <td><span class="label label-danger">Delivered</span></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">11:45 AM | 16-01-14</div>
-                    </td>
-                  </tr>
+                  <div id="latestOrders">
+                      <!-- latestorder top 5 table -->
+                  </div>
                   </tbody>
                 </table>
               </div>
@@ -833,6 +796,11 @@
             $("#completeOrders").load("selectCompleteOrders.php");
             var refreshId = setInterval(function() {
                 $("#completeOrders").load('selectCompleteOrders.php?randval='+ Math.random());                                    
+            }, 1000);
+            $.ajaxSetup({ cache: false});    
+            $("#latestOrders").load("latestOrders.php");
+            var refreshId = setInterval(function() {
+                $("#latestOrders").load('latestOrders.php?randval='+ Math.random());                                    
             }, 1000);
             $.ajaxSetup({ cache: false});       
         });       
