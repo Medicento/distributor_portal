@@ -4,7 +4,7 @@
 
 <?php
 
-    $query_showProduct = "SELECT * FROM orders ORDER BY id DESC";
+    $query_showProduct = "SELECT * FROM orders WHERE state = 0 ORDER BY id DESC";
     $result_showProduct = mysqli_query($conn, $query_showProduct);
     $result_showModal = mysqli_query($conn, $query_showProduct);
     $result_showConfirm = mysqli_query($conn, $query_showProduct);
@@ -844,9 +844,14 @@
       </div>
     </section> 
     <div class="modal-footer">
-       
-         <button type="button" class="btn btn-lg btn-danger" data-dismiss="modal">Close</button>
-       </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a href="confirmOrder.php?order_id=<?php echo $confirmList['order_id']; ?>">
+                    <button type="button" class="btn btn-lg btn-success">Confirm and close</button>
+                </a>
+            </div>
+        </div>
+    </div>
    </div>
   </div>
  
