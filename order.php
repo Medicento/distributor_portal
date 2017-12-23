@@ -1,4 +1,15 @@
+<?php require_once("includes/session.php");?>
+<?php require_once("includes/db_connection.php");?>
+<?php require_once("includes/functions.php");?>
 
+<?php
+
+    $query_showProduct = "SELECT * FROM orders ORDER BY id DESC";
+    $result_showProduct = mysqli_query($conn, $query_showProduct);
+    $result_showModal = mysqli_query($conn, $query_showProduct);
+    confirm_query($result_showModal);
+    confirm_query($result_showProduct);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +40,7 @@
   <![endif]-->
 
   <!-- Google Font -->
+  
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <style type="text/css">
@@ -543,6 +555,10 @@
                   </tr>
                   </thead>
                   <tbody>
+                  
+
+
+
                   <tr>
                     <td>
                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
@@ -557,151 +573,7 @@
                     <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
                   </tr>
 
-                  <tr>
-                    <td>
-                      
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR7429</a></td>
-                    <td>Garuda Pharma</td>
-                    <td>4000</td>
-                    <td><small><i class="fa fa-inr"></i> 26000</small></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">10:10 AM | 27-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR7429</a></td>
-                    <td>New Life Medicals</td>
-                    <td>1000</td>
-                    <td><small><i class="fa fa-inr"></i> 35000</small></td>
-                    <td>
-                      <div class="sparkbar" data-color="#00c0ef" data-height="20">9:47 AM | 25-01-97</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Alpha medicals</td>
-                    <td>2000</td>
-                    <td><small><i class="fa fa-inr"></i> 42000</small></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">8:50 AM | 21-05-07</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                      
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                    
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR7429</a></td>
-                    <td>Medicure Pharma</td>
-                    <td>3000</td>
-                    <td><small><i class="fa fa-inr"></i> 54000</small></td>
-                    <td>
-                      <div class="sparkbar" data-color="#f56954" data-height="20">11:45 AM | 16-01-14</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-          
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-              
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Care Chemist</td>
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                     
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-                
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>New Life Pharma</td>
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                   
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-           
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Balaji Pharma</td>
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                    
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
                   
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Shree Pharma</td>
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                     
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-           
-                    </td>
-                    <td ><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Care Medicines</td>
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
-                  <tr>
-                    <td>
-                     
-                          <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="..."  >
-  
-                    </td>
-                    <td><a data-toggle="modal" data-target="#myModal" href="#" >OR1848</a></td>
-                    <td>Mahaveer Medicals</td>
-                    <td>6000</td>
-                    <td><small><i class="fa fa-inr"></i></small> 10000</td>
-                    <td>
-                      <div class="sparkbar" data-color="#f39c12" data-height="20">9:10 AM | 7-01-17</div>
-                    </td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm_modal">Confirm</button><td>
-                  </tr>
                   
                   
                   </tbody>
@@ -740,7 +612,11 @@
   <div class="control-sidebar-bg"></div>
 
 </div>
-<div class="modal fade" id="myModal" role="dialog">
+
+<?php
+    while ($modalList = mysqli_fetch_assoc($result_showModal)) { 
+      ?>
+<div class="modal fade" id="order<?php echo $modalList['order_id']; ?>" role="dialog">
    <div class="modal-dialog">
    
      <!-- Modal content-->
@@ -796,6 +672,9 @@
      
    </div>
  </div>
+ <?php
+}
+?>
 <div class="modal fade" id="confirm_modal" role="dialog">
    <div class="modal-dialog modal-lg">
   
@@ -1018,3 +897,8 @@
                
 </body>
 </html>
+<?php
+if (isset ($conn)){
+  mysqli_close($conn);
+}
+?>
