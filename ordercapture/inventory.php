@@ -142,7 +142,7 @@
           </a>
         </li>
         <li class="active">
-          <a href="inventory.php">
+          <a href="inventory.php?order_id=<?php echo $order_id ?>&pharma=<?php echo $pharma ?>">
             <i class="fa fa-bank"></i>
             <span>Inventory</span>
           </a>
