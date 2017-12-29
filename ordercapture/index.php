@@ -1,6 +1,15 @@
 <?php require_once("../includes/session.php");?>
 <?php require_once("../includes/db_connection.php");?>
 <?php require_once("../includes/functions.php");?>
+<?php confirm_logged_in(); ?>
+<?php
+    $current_user = $_SESSION["username"];
+    $name_query = "SELECT * FROM users WHERE username = '{$current_user}' LIMIT 1";
+    $name_result = mysqli_query($conn, $name_query);
+    confirm_query($name_result);
+    $name_title = mysqli_fetch_assoc($name_result);
+    $first_name = explode(" ", $name_title['name']);
+?>
 
 <?php
     $x = 6; // Amount of digits
@@ -12,6 +21,20 @@
     if (isset($_POST['submit'])) {
         $pharma = $_POST['pharmacy'];
         redirect_to("inventory.php?order_id=".$order_id."&pharma=".$pharma);
+    }
+?>
+<?php
+  if (isset($_GET['state'])) {
+    $state = $_GET['state'];
+  } else {
+    $state = 0;
+  }
+  if ($state == 1) {
+        $view_note = "";
+        $acct_note = '<span>Order Added</span>';
+    } else {
+        $view_note = "style='display:none;'";
+        $acct_note = "";
     }
 ?>
 <!DOCTYPE html>
@@ -72,6 +95,21 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown tasks-menu">
+            <a href="logout.php" class="dropdown-toggle">
+              <i class="fa fa-sign-out"></i>
+            </a>
+          </li>
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs"><?php echo htmlentities($first_name[0]); ?></span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
@@ -111,6 +149,14 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
             <div class="col-lg-12">
+              <div <?php echo $view_note; ?> class="row">
+                    <div class="col-lg-12">
+                        <div class="alert alert-info alert-dismissable">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="fa fa-info-circle"></i>  <strong><?php echo $acct_note; ?></strong> 
+                        </div>
+                    </div>
+                </div>
                 <div class="box box-primary">
                     <!-- form start -->
                     <p class="text-center">

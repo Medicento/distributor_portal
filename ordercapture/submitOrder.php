@@ -11,7 +11,7 @@
 	$result = mysqli_query($conn, $query);
 	confirm_query($result);
 	if ($result) {
-		redirect_to("index.php");
+		redirect_to("index.php?state=1");
 	}
 ?>
 <?php

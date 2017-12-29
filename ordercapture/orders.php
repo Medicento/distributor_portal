@@ -1,6 +1,15 @@
 <?php require_once("../includes/session.php");?>
 <?php require_once("../includes/db_connection.php");?>
 <?php require_once("../includes/functions.php");?>
+<?php confirm_logged_in(); ?>
+<?php
+    $current_user = $_SESSION["username"];
+    $name_query = "SELECT * FROM users WHERE username = '{$current_user}' LIMIT 1";
+    $name_result = mysqli_query($conn, $name_query);
+    confirm_query($name_result);
+    $name_title = mysqli_fetch_assoc($name_result);
+    $first_name = explode(" ", $name_title['name']);
+?>
 
 <?php
 
@@ -69,7 +78,21 @@
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
-
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown tasks-menu">
+            <a href="logout.php" class="dropdown-toggle">
+              <i class="fa fa-sign-out"></i>
+            </a>
+          </li>
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs"><?php echo htmlentities($first_name[0]); ?></span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
