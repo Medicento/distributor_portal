@@ -33,7 +33,7 @@
         } else {
             $address = "";
         }
-        $area = $_POST['area'];
+        $area = strtoupper($_POST['area']);
         if (isset($_POST['owner'])) {
             $owner = $_POST['owner'];
         } else {
