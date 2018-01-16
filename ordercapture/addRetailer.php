@@ -12,18 +12,6 @@
 ?>
 
 <?php
-    $x = 6; // Amount of digits
-    $min = pow(10,$x);
-    $max = pow(10,$x+1)-1;
-    $order_id = rand($min, $max);
-?>
-<?php
-    if (isset($_POST['submit'])) {
-        $pharma = $_POST['pharmacy'];
-        redirect_to("inventory.php?order_id=".$order_id."&pharma=".$pharma);
-    }
-?>
-<?php
   if (isset($_GET['state'])) {
     $state = $_GET['state'];
   } else {
@@ -31,17 +19,56 @@
   }
   if ($state == 1) {
         $view_note = "";
-        $acct_note = '<span>Order Added</span>';
+        $acct_note = '<span>Retailer Added</span>';
     } else {
         $view_note = "style='display:none;'";
         $acct_note = "";
     }
 ?>
 <?php
-    $queryArea = "SELECT DISTINCT (area) FROM retailers";
-    $resultArea = mysqli_query($conn, $queryArea);
-    confirm_query($resultArea);
+    if (isset($_POST['submit'])) {
+        $shopname = $_POST['shopname'];
+        if (isset($_POST['address'])) {
+            $address = $_POST['address'];
+        } else {
+            $address = "";
+        }
+        $area = $_POST['area'];
+        if (isset($_POST['owner'])) {
+            $owner = $_POST['owner'];
+        } else {
+            $owner = "";
+        }
+        if (isset($_POST['phno'])) {
+            $phno = $_POST['phno'];
+        } else {
+            $phno = "";
+        }
+        if (isset($_POST['email'])) {
+            $email = $_POST['email'];
+        } else {
+            $email = "";
+        }
+        if (isset($_POST['gstNo'])) {
+            $gstNo = $_POST['gstNo'];
+        } else {
+            $gstNo = "";
+        }
+        if (isset($_POST['dlNo'])) {
+            $dlNo = $_POST['dlNo'];
+        } else {
+            $dlNo = "";
+        }
+
+        $query = "INSERT INTO retailers (shopname, address, area, owner, phno, email, gstNo, dlNo) VALUE('{$shopname}', '{$address}', '{$area}', '{$owner}', '{$phno}', '{$email}', '{$gstNo}', '{$dlNo}')";
+        $result = mysqli_query($conn, $query);
+        confirm_query($result);
+        if ($result) {
+            redirect_to("addRetailer.php?state=1");
+        }
+    }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -123,7 +150,7 @@
     <section class="sidebar">
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="active">
+        <li>
           <a href="index.php">
             <i class="fa fa-dashboard"></i> <span>New Order</span>
           </a>
@@ -134,7 +161,7 @@
             <span>Orders</span>
           </a>
         </li>
-        <li>
+        <li class="active">
           <a href="addRetailer.php">
             <i class="fa fa-plus"></i>
             <span>Add Retailers</span>
@@ -150,8 +177,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        New Order
-        <small>Add new orders</small>
+        Add Retailers
+        <small>Add new retailers</small>
       </h1>
     </section><br>
 
@@ -171,29 +198,42 @@
                 <div class="box box-primary">
                     <!-- form start -->
                     <p class="text-center">
-                        <form role="form" method="post" action="index.php" >
+                        <form role="form" method="post" action="addRetailer.php" >
                           <div class="box-body">
                             <div class="form-group col-lg-12">
-                              <label for="area">Select Area</label>
-                                <select name="area" class="form-control" id="optionA" onchange="update(this.value)" required>
-                                    <option selected disabled>Select your option</option>
-                                    <?php
-                                        while ($areaList = mysqli_fetch_assoc($resultArea)) { ?>
-                                            <option value="<?php echo $areaList['area']; ?>"><?php echo $areaList['area']; ?></option>
-                                            <?php
-                                        }
-                                    ?>
-                                </select>
+                              <label for="shopname">Shop Name</label>
+                                <input type="text" name="shopname" class="form-control" required id="shopname">
                             </div>
                             <div class="form-group col-lg-12">
-                              <label for="pharmacy">Select Retailer</label>
-                                <select name="pharmacy" class="form-control" id="data" required>
-                                    <option selected disabled>Select your option</option>
-                                    
-                                </select>
+                              <label for="address">Address</label>
+                                <input type="text" name="address" class="form-control" id="address">
                             </div>
                             <div class="form-group col-lg-12">
-                                <input class="form-control btn-primary btn-lg" type="submit" name="submit" value="New Order">
+                              <label for="area">Area</label>
+                                <input type="text" name="area" class="form-control" required id="area">
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="owner">Owner</label>
+                                <input type="text" name="owner" class="form-control" id="owner">
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="phno">Phone Number</label>
+                                <input type="text" name="phno" class="form-control" id="phno">
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="email">Email</label>
+                                <input type="email" name="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="gstNo">GST Number</label>
+                                <input type="text" name="gstNo" class="form-control" id="gstNo">
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="dlNo">DL Number</label>
+                                <input type="text" name="dlNo" class="form-control" id="dlNo">
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <input class="form-control btn-success btn-lg" type="submit" name="submit" value="Submit">
                             </div>
                         </form>
                         

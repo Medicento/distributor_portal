@@ -81,7 +81,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <li class="dropdown tasks-menu">
-            <a href="logout.php" class="dropdown-toggle">
+            <a href="../logout.php" class="dropdown-toggle">
               <i class="fa fa-sign-out"></i>
             </a>
           </li>
