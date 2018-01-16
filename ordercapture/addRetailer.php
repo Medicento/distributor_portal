@@ -27,35 +27,35 @@
 ?>
 <?php
     if (isset($_POST['submit'])) {
-        $shopname = $_POST['shopname'];
+        $shopname = mysqli_real_escape_string($conn, htmlspecialchars($_POST['shopname']));
         if (isset($_POST['address'])) {
-            $address = $_POST['address'];
+            $address = mysqli_real_escape_string($conn, htmlspecialchars($_POST['address']));
         } else {
             $address = "";
         }
-        $area = strtoupper($_POST['area']);
+        $area = mysqli_real_escape_string($conn, htmlspecialchars(strtoupper($_POST['area'])));
         if (isset($_POST['owner'])) {
-            $owner = $_POST['owner'];
+            $owner = mysqli_real_escape_string($conn, htmlspecialchars($_POST['owner']));
         } else {
             $owner = "";
         }
         if (isset($_POST['phno'])) {
-            $phno = $_POST['phno'];
+            $phno = mysqli_real_escape_string($conn, htmlspecialchars($_POST['phno']));
         } else {
             $phno = "";
         }
         if (isset($_POST['email'])) {
-            $email = $_POST['email'];
+            $email = mysqli_real_escape_string($conn, htmlspecialchars($_POST['email']));
         } else {
             $email = "";
         }
         if (isset($_POST['gstNo'])) {
-            $gstNo = $_POST['gstNo'];
+            $gstNo = mysqli_real_escape_string($conn, htmlspecialchars($_POST['gstNo']));
         } else {
             $gstNo = "";
         }
         if (isset($_POST['dlNo'])) {
-            $dlNo = $_POST['dlNo'];
+            $dlNo = mysqli_real_escape_string($conn, htmlspecialchars($_POST['dlNo']));
         } else {
             $dlNo = "";
         }
