@@ -18,24 +18,15 @@
     if (isset($_POST['addProduct'])) {
         $product = mysqli_real_escape_string($conn, htmlspecialchars($_POST['product']));
         $quantity = $_POST['quantity'];
-        $tempProduct = '"'.$product.'"';
 
-        $query_findPrice = "SELECT price FROM products WHERE product = '{$tempProduct}'";
+        $query_findPrice = "SELECT price FROM products WHERE product = '{$product}'";
         $result_find = mysqli_query($conn, $query_findPrice);
         confirm_query($result_find);
         $listCost = mysqli_fetch_assoc($result_find);
-        $costPrice = $listCost['price'];
-        //$tempPrice = explode('"', $costPrice);
-        //echo count($tempPrice);
-        if (preg_match('/"([^"]+)"/', $costPrice, $m)) {
-            $finalCost = (float)$m[1];   
-        } else {
-            $finalCost = 0;
-           //preg_match returns the number of matches found, 
-           //so if here didn't match pattern
-        }
+        $costPrice = (float)$listCost['price'];
+        
 
-        $cost = $quantity * $finalCost;
+        $cost = $quantity * $costPrice;
 
         $query_addProduct = "INSERT INTO add_products (order_id, product, quantity, cost, pharma) VALUES ({$order_id}, '{$product}', {$quantity}, '{$cost}', '{$pharma}')";
         $result_addProduct = mysqli_query($conn, $query_addProduct);
