@@ -4,10 +4,11 @@
 
 <?php
 	$order_id = $_GET['order_id'];
+	$slot = $_GET['slot'];
 	date_default_timezone_set('Asia/Calcutta');
     $order_time = date("F j, Y, g:i a");
 
-	$query = "INSERT INTO orders (order_id, order_time) VALUES({$order_id}, '{$order_time}')";
+	$query = "INSERT INTO orders (order_id, order_time, slot) VALUES({$order_id}, '{$order_time}', {$slot})";
 	$result = mysqli_query($conn, $query);
 	confirm_query($result);
 	if ($result) {

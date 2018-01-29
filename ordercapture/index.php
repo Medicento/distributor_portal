@@ -20,7 +20,8 @@
 <?php
     if (isset($_POST['submit'])) {
         $pharma = $_POST['pharmacy'];
-        redirect_to("inventory.php?order_id=".$order_id."&pharma=".$pharma);
+        $slot = $_POST['slot'];
+        redirect_to("inventory.php?order_id=".$order_id."&pharma=".$pharma."&slot=".$slot);
     }
 ?>
 <?php
@@ -190,6 +191,14 @@
                                 <select name="pharmacy" class="form-control" id="data" required>
                                     <option selected disabled>Select your option</option>
                                     
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-12">
+                              <label for="slot">Select Time Slot</label>
+                                <select name="slot" class="form-control" required>
+                                    <option selected disabled>Select your option</option>
+                                    <option value="1">11 AM - 1 PM</option>
+                                    <option value="2">6 PM - 8 PM</option>
                                 </select>
                             </div>
                             <div class="form-group col-lg-12">

@@ -13,6 +13,7 @@
 <?php
     $order_id = $_GET['order_id'];
     $pharma = $_GET['pharma'];
+    $slot = $_GET['slot'];
     //echo $order_id;
     if (isset($_POST['addProduct'])) {
         $product = mysqli_real_escape_string($conn, htmlspecialchars($_POST['product']));
@@ -243,7 +244,7 @@
               <br><hr>
               <div class="row">
                 <div class="col-lg-12 text-center">
-                    <a href="submitOrder.php?order_id=<?php echo $order_id ?>">
+                    <a href="submitOrder.php?order_id=<?php echo $order_id ?>&slot=<?php echo $slot ?>">
                         <button class="btn btn-success">Submit</button>
                     </a>
                 </div>  
