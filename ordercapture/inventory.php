@@ -235,6 +235,7 @@
               <br><hr>
               <div class="row">
                 <div class="col-lg-12 text-center">
+                  <?php echo $slot; ?>
                     <a href="submitOrder.php?order_id=<?php echo $order_id ?>&slot=<?php echo $slot ?>">
                         <button class="btn btn-success">Submit</button>
                     </a>
