@@ -172,7 +172,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="inventory.php?order_id=<?php echo $order_id ?>&pharma=<?php echo $pharma ?>" >
+                    <form role="form" method="post" action="inventory.php?order_id=<?php echo $order_id ?>&pharma=<?php echo $pharma ?>&slot=<?php echo $slot ?>" >
                       <div class="box-body">
                         <div class="form-group col-lg-4">
                           <label for="product">Product</label>
@@ -235,7 +235,7 @@
               <br><hr>
               <div class="row">
                 <div class="col-lg-12 text-center">
-                  <?php echo $slot; ?>
+                  
                     <a href="submitOrder.php?order_id=<?php echo $order_id ?>&slot=<?php echo $slot ?>">
                         <button class="btn btn-success">Submit</button>
                     </a>
