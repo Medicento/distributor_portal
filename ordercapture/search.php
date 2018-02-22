@@ -4,7 +4,7 @@
 //get search term
 $searchTerm = $_GET['term'];
 //get matched data from skills table
-$sql =$conn->query("SELECT * FROM products WHERE product LIKE '%".$searchTerm."%' ORDER BY product ASC LIMIT 0,10");
+$sql =$conn->query("SELECT * FROM products WHERE product LIKE '".$searchTerm."%' ORDER BY product ASC LIMIT 0,10");
 while ($row = @mysqli_fetch_array($sql)) {
     $data[] = trim($row['product'],'"');
 }
