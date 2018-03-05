@@ -1,6 +1,8 @@
 <?php require_once("../includes/session.php");?>
 <?php require_once("../includes/db_connection.php");?>
-<?php require_once("../includes/functions.php");?>
+<?php require_once("../includes/functions.php");
+      require_once ('../includes/_reduse.php');
+?>
 <?php confirm_logged_in(); ?>
 <?php
     $current_user = $_SESSION["username"];
@@ -19,9 +21,73 @@
 ?>
 <?php
     if (isset($_POST['submit'])) {
-        $pharma = $_POST['pharmacy'];
-        $slot = $_POST['slot'];
-        redirect_to("inventory.php?order_id=".$order_id."&pharma=".$pharma."&slot=".$slot);
+
+
+
+      $valid_exts = array('jpeg', 'jpg', 'JPEG', 'JPG','pdf','PDF');
+          $ext1 = strtolower(pathinfo($_FILES['file1']['name'], PATHINFO_EXTENSION));
+          $ext2 = strtolower(pathinfo($_FILES['file2']['name'], PATHINFO_EXTENSION));
+          $ext3 = strtolower(pathinfo($_FILES['file3']['name'], PATHINFO_EXTENSION));
+          $ext4 = strtolower(pathinfo($_FILES['file4']['name'], PATHINFO_EXTENSION));
+          
+          if (in_array($ext1, $valid_exts))
+          {
+            $path     = 'images/'.rand(1, 9999).'_'.time().'.'.$ext1;   // File store in image folder
+            
+            $img_name1 = compress_image($_FILES["file1"]["tmp_name"], $path, 95); // Compress File in KB, (Here 10 is a percentege size of total size orginal file)
+          $img_name_1 = explode("images/", $img_name1);
+            
+          }
+           if (in_array($ext2, $valid_exts))
+          {
+            $path     = 'images/'.rand(1, 9999).'_'.time().'.'.$ext2;   // File store in image folder
+            
+            $img_name1 = compress_image($_FILES["file2"]["tmp_name"], $path, 95); // Compress File in KB, (Here 10 is a percentege size of total size orginal file)
+          $img_name_2 = explode("images/", $img_name1);
+            
+          }
+           if (in_array($ext3, $valid_exts))
+          {
+            $path     = 'images/'.rand(1, 9999).'_'.time().'.'.$ext3;   // File store in image folder
+            
+            $img_name1 = compress_image($_FILES["file3"]["tmp_name"], $path, 95); // Compress File in KB, (Here 10 is a percentege size of total size orginal file)
+          $img_name_3 = explode("images/", $img_name1);
+            
+          }
+           if (in_array($ext4, $valid_exts))
+          {
+            $path     = 'images/'.rand(1, 9999).'_'.time().'.'.$ext4;   // File store in image folder
+            
+            $img_name1 = compress_image($_FILES["file4"]["tmp_name"], $path, 95); // Compress File in KB, (Here 10 is a percentege size of total size orginal file)
+          $img_name_4 = explode("images/", $img_name1);
+            
+          }
+
+        $orgnsName = $_POST['orgnsName'];
+        $signDate = $_POST['signDate'];
+        $orgnsAddress = $_POST['orgnsAddress'];
+        $conName = $_POST['conName'];
+        $conDesig = $_POST['conDesig'];
+        $conPhone = $_POST['conPhone'];
+        $conMail = $_POST['conMail'];
+        $drugLicense = $_POST['drugLicense'];
+        $gstno = $_POST['gstno'];
+        $timing = $_POST['timing'];
+        $legalStatus = $_POST['legalStatus'];
+        
+        $query = "INSERT INTO `onboard`(`orgnsName`, `signDate`, `orgnsAddress`, `conName`, `conDesig`, `conPhone`, `conMail`,
+         `drugLicense`, `gstno`, `timing`, `legalStatus`, `file1`, `file2`, `file3`, `file4`)
+          VALUES ('{$orgnsName}', '{$signDate}', '{$orgnsAddress}','{$conName}', '{$conDesig}', '{$conPhone}','{$conMail}', '{$drugLicense}', '{$gstno}', '{$timing}', '{$legalStatus}', '{$img_name_1[1]}', '{$img_name_2[1]}', '{$img_name_3[1]}', '{$img_name_4[1]}')";
+          echo $query;
+         // die;
+        $result = mysqli_query($conn, $query);
+        confirm_query($result);
+        if ($result) {
+          redirect_to("onBoard.php?state=1");
+        }
+
+     
+      
     }
 ?>
 <?php
@@ -32,7 +98,7 @@
   }
   if ($state == 1) {
         $view_note = "";
-        $acct_note = '<span>Order Added</span>';
+        $acct_note = '<span>On Boarded</span>';
     } else {
         $view_note = "style='display:none;'";
         $acct_note = "";
@@ -157,8 +223,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        New Order
-        <small>Add new orders</small>
+        On Boarding
+        <small>Add On Boarding</small>
       </h1>
     </section><br>
 
@@ -178,37 +244,90 @@
                 <div class="box box-primary">
                     <!-- form start -->
                     <p class="text-center">
-                        <form role="form" method="post" action="index.php" >
+                        <form role="form" method="post"  enctype="multipart/form-data" action="onBoard.php" >
                           <div class="box-body">
-                            <div class="form-group col-lg-12">
-                              <label for="area">Select Area</label>
-                                <select name="area" class="form-control" id="optionA" onchange="update(this.value)" required>
-                                    <option selected disabled>Select your option</option>
-                                    <?php
-                                        while ($areaList = mysqli_fetch_assoc($resultArea)) { ?>
-                                            <option value="<?php echo $areaList['area']; ?>"><?php echo $areaList['area']; ?></option>
-                                            <?php
-                                        }
-                                    ?>
-                                </select>
+                            <div class="form-group col-lg-6">
+                              <label for="area">Name Of Organisation</label>
+                                <input type="text" name="orgnsName" class="form-control" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label for="pharmacy">Date Of Signing</label>
+                                <input type="Date" name="signDate" class="form-control"  required>
                             </div>
                             <div class="form-group col-lg-12">
-                              <label for="pharmacy">Select Retailer</label>
-                                <select name="pharmacy" class="form-control" id="data" required>
+                              <label for="slot">Organisation Address</label>
+                                <textarea name="orgnsAddress" class="form-control" ></textarea> 
+                            </div>
+                             
+                            <div class="form-group col-lg-6">
+                              <label for="area">Name Of Contact Person</label>
+                                <input type="text" name="conName" class="form-control" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label for="area">Designation</label>
+                                <input type="text" name="conDesig" class="form-control" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label for="area">Contact Number</label>
+                                <input type="text" name="conPhone" class="form-control" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label for="area">E-mail</label>
+                                <input type="E-mail" name="conMail" class="form-control" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label for="area">Drug License No.</label>
+                                <input type="text" name="drugLicense" class="form-control" required>
+                            </div>
+                            <div class="form-group col-lg-6">
+                              <label for="area">GST No.</label>
+                                <input type="E-mail" name="gstno" class="form-control" required>
+                            </div>
+                             <div class="form-group col-lg-6">
+                              <label for="area">Delivery Timing</label>
+                                <select name="timing" class="form-control" id="optionA" required>
                                     <option selected disabled>Select your option</option>
                                     
+                                      <option value="10.00 am - 12.30 pm">10.00 am - 12.30 pm</option>
+                                      <option value="4.00 pm - 6.30 pm">4.00 pm - 6.30 pm</option>
+                                          
                                 </select>
                             </div>
-                            <div class="form-group col-lg-12">
-                              <label for="slot">Select Time Slot</label>
-                                <select name="slot" class="form-control" required>
+                            <div class="form-group col-lg-6">
+                              <label for="area">Legal Status</label>
+                                <select name="legalStatus" class="form-control" id="optionA" required>
                                     <option selected disabled>Select your option</option>
-                                    <option value="1">11 AM - 1 PM</option>
-                                    <option value="2">6 PM - 8 PM</option>
+                                    
+                                      <option value="Prop">Prop</option>
+                                      <option value="Pvt Ltd">Pvt Ltd</option>
+                                      <option value="LTD">LTD</option>
+                                      <option value="Parnership">Parnership</option>
+                                      <option value="PSU">PSU</option>
+                                          
                                 </select>
                             </div>
+                            <div class="form-group col-lg-3">
+                              <label for="area">Drug license</label>
+                              <input type="file" name="file1">
+                            </div>
+                             <div class="form-group col-lg-3">
+                              <label for="area">Cancelled bill</label>
+                              <input type="file" name="file2">
+                            </div>
+                             <div class="form-group col-lg-3">
+                              <label for="area">Visiting card</label>
+                              <input type="file" name="file3">
+                            </div>
+                             <div class="form-group col-lg-3">
+                              <label for="area">Agreement</label>
+                              <input type="file" name="file4">
+                            </div>
+                             <div class="form-group col-lg-12">
+                              <label for="area">&nbsp;</label>
+                                
+                            </div>
                             <div class="form-group col-lg-12">
-                                <input class="form-control btn-primary btn-lg" type="submit" name="submit" value="New Order">
+                                <input class="form-control btn-primary btn-lg" type="submit" name="submit" value="Submit">
                             </div>
                         </form>
                         
