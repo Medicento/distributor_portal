@@ -206,6 +206,7 @@
               <h3 class="box-title">List of Products</h3>
             </div>
             <!-- /.box-header -->
+            <form method="post" action="">
             <div class="box-body">
                     <table id="example2" class="table table-bordered table-hover">
                       <thead>
@@ -220,9 +221,9 @@
                           <?php
                               while ($productList = mysqli_fetch_assoc($result_showProduct)) { ?>
                                   <tr>
-                                    <td><?php echo $productList['product']; ?></td>
-                                    <td><?php echo $productList['quantity']; ?></td>
-                                    <td><?php echo $productList['cost']; ?></td>
+                                    <td><input type="text" name="product" value="<?php echo $productList['product']; ?>"></td>
+                                    <td><input type="text" name="quantity" value="<?php echo $productList['quantity']; ?>"></td>
+                                    <td><input type="text" name="cost" value="<?php echo $productList['cost']; ?>"></td>
                                     <td class="text-center" >
                                       <a href="deleteProduct.php?product_id=<?php echo $productList['id']; ?>&order_id=<?php echo $order_id ?>" onclick="return confirm('Are you sure you want to delete this product?');"><i class="fa fa-close"></i> </a>
                                     </td>
@@ -237,11 +238,12 @@
                 <div class="col-lg-12 text-center">
                   
                     <a href="submitOrder.php?order_id=<?php echo $order_id ?>&slot=<?php echo $slot ?>">
-                        <button class="btn btn-success">Submit</button>
+                        <button typeclass="btn btn-success">Submit</button>
                     </a>
                 </div>  
               </div>
             </div>
+          </form>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->

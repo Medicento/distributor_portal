@@ -11,14 +11,7 @@
     confirm_query($name_result);
     $name_title = mysqli_fetch_assoc($name_result);
     $first_name = explode(" ", $name_title['name']);
-?>
-
-<?php
-    $x = 6; // Amount of digits
-    $min = pow(10,$x);
-    $max = pow(10,$x+1)-1;
-    $order_id = rand($min, $max);
-?>
+?>  
 <?php
     if (isset($_POST['submit'])) {
 
