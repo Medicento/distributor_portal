@@ -1,0 +1,25 @@
+{
+  "development": {
+    "server": "medicento.com",
+    "username": "root",
+    "password": "root",
+    "database": "medicento",
+    "host": "medicento.com",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "server": "medicento.com",
+    "username": "root",
+    "password": "root",
+    "database": "medicento",
+    "host": "medicento.com",
+    "dialect": "mysql"
+  }
+}
